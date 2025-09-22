@@ -18,6 +18,10 @@ public class OllamaBotService {
                 return ollamaClient.askModel("deepseek-r1:7b", question);
             case "!ia:coder":
                 return ollamaClient.askModel("deepseek-coder:6.7b", question);
+            case "!ia:amy-coder":
+                return ollamaClient.askModel("amy-coder:latest", question);
+            case "!ia:amy-thinkam":
+                return ollamaClient.askModel("amy-thinkam:latest", question);
             default:
                 return "Unknown command. Please use !ia:r1 or !ia:coder.";
         }

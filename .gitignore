@@ -36,3 +36,4 @@ node_modules/
 
 # Generated files
 target/
+application.properties
