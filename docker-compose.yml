@@ -1,0 +1,36 @@
+services:
+  discord-ollama-bot:
+    build: .
+    image: discord-ollama-bot:latest
+    container_name: discord-ollama-bot
+    environment:
+      # O Discord Token deve ser definido no seu arquivo application.properties ou como variável de ambiente
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+    # Adicionando dependência para garantir que o Ollama inicie primeiro
+    depends_on:
+      - ollama
+    # Limita o uso de memória do bot
+    mem_limit: 1g
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      # Persiste os modelos de IA baixados para não precisar baixá-los novamente
+      - ollama-models:/root/.ollama
+    # Limita a memória disponível para o Ollama
+    mem_limit: 5.5g
+    # Você pode remover esta linha se tiver modelos pequenos
+    command: "/bin/bash -c \"ollama pull amy-thinkam:latest && ollama serve\""
+    restart: unless-stopped
+
+# Declara o volume para os modelos de forma persistente
+volumes:
+  ollama-models:
