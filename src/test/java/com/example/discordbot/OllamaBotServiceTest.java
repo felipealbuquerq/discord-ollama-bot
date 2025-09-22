@@ -23,20 +23,20 @@ public class OllamaBotServiceTest {
     void testGetResponseFromModel_r1() {
         String userQuestion = "What is the capital of France?";
         when(ollamaClient.askModel("deepseek-r1:7b", userQuestion))
-                .thenReturn("The capital of France is Paris.");
+                .thenReturn("Ollama response for model deepseek-r1:7b: What is the capital of France?");
 
         String response = ollamaBotService.getModelResponse("!ia:r1", userQuestion);
-        assertEquals("The capital of France is Paris.", response);
+        assertEquals("Ollama response for model deepseek-r1:7b: What is the capital of France?", response);
     }
 
     @Test
     void testGetResponseFromModel_coder() {
         String userQuestion = "How do I write a for loop in Python?";
         when(ollamaClient.askModel("deepseek-coder:6.7b", userQuestion))
-                .thenReturn("You can write a for loop in Python like this: for i in range(10): print(i)");
+                .thenReturn("Ollama response for model deepseek-coder:6.7b: How do I write a for loop in Python?");
 
         String response = ollamaBotService.getModelResponse("!ia:coder", userQuestion);
-        assertTrue(response.contains("for i in range(10)"));
+        assertEquals("Ollama response for model deepseek-coder:6.7b: How do I write a for loop in Python?", response);
     }
 
     @Test
