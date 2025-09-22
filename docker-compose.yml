@@ -1,0 +1,1 @@
+version: '3.8'\nservices:\n  discord-ollama-bot:\n    build: .\n    image: discord-ollama-bot:latest\n    container_name: discord-ollama-bot\n    environment:\n      - JAVA_OPTS=\n    ports:\n      - "8080:8080"\n    restart: unless-stopped\n    volumes:\n      - ./logs:/app/logs\n    # Optional: add other environment variables or dependencies as needed\n
