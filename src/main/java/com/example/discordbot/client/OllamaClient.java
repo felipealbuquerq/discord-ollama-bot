@@ -24,8 +24,30 @@ public class OllamaClient {
 
             ResponseEntity<String> response = restTemplate.postForEntity(OLLAMA_URL, entity, String.class);
 
-            JSONObject responseBody = new JSONObject(response.getBody());
-            return responseBody.optString("response", "No response from Ollama.");
+            StringBuilder fullResponse = new StringBuilder();
+            String responseBody = response.getBody();
+
+            if (responseBody != null) {
+                // Processa cada linha do stream como um objeto JSON separado
+                String[] lines = responseBody.split("\n");
+                for (String line : lines) {
+                    if (line.trim().isEmpty()) continue;
+                    JSONObject jsonLine = new JSONObject(line);
+                    
+                    // Concatena a parte da resposta de cada linha
+                    if (jsonLine.has("response")) {
+                        fullResponse.append(jsonLine.getString("response"));
+                    }
+                    
+                    // Verifica se o stream terminou
+                    if (jsonLine.optBoolean("done", false)) {
+                        break;
+                    }
+                }
+            }
+
+            return fullResponse.toString();
+
         } catch (Exception e) {
             return "Error communicating with Ollama: " + e.getMessage();
         }
