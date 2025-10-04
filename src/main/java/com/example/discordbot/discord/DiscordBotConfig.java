@@ -1,6 +1,7 @@
-package com.example.discordbot;
+package com.example.discordbot.discord;
 
 import com.example.discordbot.discord.DiscordBot;
+
 import net.dv8tion.jda.api.JDABuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

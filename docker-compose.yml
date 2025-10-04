@@ -4,8 +4,8 @@ services:
     image: discord-ollama-bot:latest
     container_name: discord-ollama-bot
     environment:
-      # O Discord Token deve ser definido no seu arquivo application.properties ou como variável de ambiente
       - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
     ports:
       - "8080:8080"
     restart: unless-stopped
