@@ -6,9 +6,10 @@ A Spring Boot Discord bot that integrates with Ollama to deliver real-time, AI-p
 
 - **Ollama Integration**: Connects to a local Ollama server to run LLMs.
 - **Model Selection**: Use Discord commands to choose between models:
-  - `!ia:r1 <your question>` for DeepSeek-R1:7b
-  - `!ia:coder <your question>` for deepseek-coder:6.7b
-  - `!ia:amy-thinkam <your question>` for Amy, the Think A.M. AI.
+  - `!ai:r1 <your question>` for DeepSeek-R1:7b
+  - `!ai:coder <your question>` for deepseek-coder:6.7b
+  - `!ai:amy-coder <your question>` for Amy, the Think A.M. AI Coder.
+  - `!ai:amy-thinkam <your question>` for Amy, the Think A.M. AI.
 - **Fast Responses**: Get AI answers in real time.
 - **Easy Deployment**: Ready-to-use Docker and Docker Compose setup.
 - **Unit Tests**: Example test cases are included.
